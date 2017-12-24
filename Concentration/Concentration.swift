@@ -11,11 +11,11 @@ import Foundation
 class Concentration {
 	// Card collection
 	var cards = [Card]()
-	
+	// Index of only face up card (optional)
 	var indexOfOneAndOnlyFaceUpCard: Int?
 	
 	
-	// Choosing a card
+	// MARK: Handle choose card behavior
 	func chooseCard(at index: Int) {
 		if !cards[index].isMatched {
 			if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index{
@@ -45,13 +45,13 @@ class Concentration {
 			cards += [card, card]
 		}
 		
-		//TODO: Shuffle cards
+		// MARK: Shuffle cards
 		var shuffledCards = [Card]()
 		while !cards.isEmpty {
 			let cardIndex = Int(arc4random_uniform(UInt32(cards.count)))
 			shuffledCards.append(cards.remove(at: cardIndex))
 		}
-
+		
 		cards = shuffledCards
 	}
 }
